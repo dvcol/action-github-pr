@@ -1,0 +1,33 @@
+name: Github Pr Comment
+description: Create a comment in a pull request
+inputs:
+  file:
+    description: 'Path of the file that should be commented'
+  message:
+    description: 'Message that should be printed in the pull request'
+
+  mode:
+    description: 'Report mode (check or comment)'
+    default: 'comment'
+
+  prefix:
+    default: '<!-- ci_report -->'
+    description: 'A prefix tag on your comment that will be used to identify a comment in case of replacement.'
+  name:
+    description: 'A name for the check report'
+  title:
+    description: 'A title for the check report'
+  summary:
+    description: 'A summary for the check report'
+  conclusion:
+    description: 'The conclusion of the check report (success, failure or cancelled)'
+  annotations:
+    description: 'Path to a json annotation file.'
+
+  token:
+    description: 'Github token of the repository (automatically created by Github)'
+    default: ${{ github.token }}
+
+runs:
+  using: 'node16'
+  main: 'lib/index.js'
